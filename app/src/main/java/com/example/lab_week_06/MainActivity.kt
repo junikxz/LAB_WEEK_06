@@ -61,9 +61,59 @@ class MainActivity : AppCompatActivity() {
                     name = "Curious George",
                     biography = "Award winning investigator",
                     imageUrl = "https://cdn2.thecatapi.com/images/bar.jpg"
+                ),
+                CatModel(
+                    gender = Gender.Male,
+                    breed = CatBreed.ExoticShorthair,
+                    name = "Tommy",
+                    biography = "Playful troublemaker",
+                    imageUrl = "https://cdn2.thecatapi.com/images/8qf.jpg"
+                ),
+                CatModel(
+                    gender = Gender.Female,
+                    breed = CatBreed.BalineseJavanese,
+                    name = "Luna",
+                    biography = "Elegant and mysterious",
+                    imageUrl = "https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg" // ✅ valid
+                ),
+                CatModel(
+                    gender = Gender.Male,
+                    breed = CatBreed.AmericanCurl,
+                    name = "Max",
+                    biography = "Always curious about everything",
+                    imageUrl = "https://cdn2.thecatapi.com/images/MTY3ODIyMQ.jpg" // ✅ valid
+                ),
+                CatModel(
+                    gender = Gender.Female,
+                    breed = CatBreed.ExoticShorthair,
+                    name = "Molly",
+                    biography = "Sleeps 20 hours a day",
+                    imageUrl = "https://cdn2.thecatapi.com/images/5pr.jpg"
+                ),
+                CatModel(
+                    gender = Gender.Unknown,
+                    breed = CatBreed.BalineseJavanese,
+                    name = "Shadow",
+                    biography = "Loves hiding in dark corners",
+                    imageUrl = "https://cdn2.thecatapi.com/images/9k3.jpg"
+                ),
+                CatModel(
+                    gender = Gender.Male,
+                    breed = CatBreed.AmericanCurl,
+                    name = "Oscar",
+                    biography = "Charming and fearless",
+                    imageUrl = "https://cdn2.thecatapi.com/images/8fj.jpg"
+                ),
+                CatModel(
+                    gender = Gender.Female,
+                    breed = CatBreed.ExoticShorthair,
+                    name = "Daisy",
+                    biography = "Sweet but sassy",
+                    imageUrl = "https://cdn2.thecatapi.com/images/bpc.jpg"
                 )
             )
         )
+
     }
     private fun showSelectionDialog(cat: CatModel) {
         AlertDialog.Builder(this)
