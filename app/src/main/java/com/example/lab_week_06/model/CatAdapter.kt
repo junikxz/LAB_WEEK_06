@@ -5,34 +5,42 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lab_week_06.ImageLoader
 import com.example.lab_week_06.R
+import com.example.lab_week_06.model.CatModel
+import com.example.lab_week_06.model.CatViewHolder
 
 class CatAdapter(
     private val layoutInflater: LayoutInflater,
-    private val imageLoader: ImageLoader
+    private val imageLoader: ImageLoader,
+    private val onClickListener: OnClickListener
 ) : RecyclerView.Adapter<CatViewHolder>() {
 
-    // Mutable list untuk menyimpan semua data kucing
+    // Mutable list for storing all the list data
     private val cats = mutableListOf<CatModel>()
 
-    // Fungsi untuk set data baru ke dalam adapter
+    // A function to set the mutable list
     fun setData(newCats: List<CatModel>) {
         cats.clear()
         cats.addAll(newCats)
-        // Beri tahu adapter kalau data berubah
+        // Tell the adapter that data has changed
         notifyDataSetChanged()
     }
 
-    // Membuat ViewHolder (inflate layout item_list.xml)
+    // onCreateViewHolder -> inflate item layout
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatViewHolder {
         val view = layoutInflater.inflate(R.layout.item_list, parent, false)
-        return CatViewHolder(view, imageLoader)
+        return CatViewHolder(view, imageLoader, onClickListener)
     }
 
-    // Mengembalikan jumlah item dalam list
-    override fun getItemCount(): Int = cats.size
+    // getItemCount -> jumlah item
+    override fun getItemCount() = cats.size
 
-    // Binding data ke ViewHolder
+    // onBindViewHolder -> ikat data ke holder
     override fun onBindViewHolder(holder: CatViewHolder, position: Int) {
         holder.bindData(cats[position])
+    }
+
+    // OnClickListener interface
+    interface OnClickListener {
+        fun onItemClick(cat: CatModel)
     }
 }

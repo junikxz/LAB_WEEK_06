@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.lab_week_06.model.CatAdapter
 import com.example.lab_week_06.ImageLoader
 import com.example.lab_week_06.R
 
@@ -11,10 +12,10 @@ private const val FEMALE_SYMBOL = "\u2640" // ♀
 private const val MALE_SYMBOL = "\u2642"   // ♂
 private const val UNKNOWN_SYMBOL = "?"     // default jika gender tidak diketahui
 
-class CatViewHolder(
-    containerView: View,
-    private val imageLoader: ImageLoader
-) : RecyclerView.ViewHolder(containerView) {
+class CatViewHolder(private val containerView: View,
+                    private val imageLoader: ImageLoader,
+                    private val onClickListener: CatAdapter.OnClickListener) :
+    RecyclerView.ViewHolder(containerView) {
 
     // containerView adalah layout dari tiap item list
     // findViewById untuk mendapatkan referensi view di layout item
@@ -34,8 +35,13 @@ class CatViewHolder(
         containerView.findViewById(R.id.cat_photo)
     }
 
+
     // Fungsi dipanggil di adapter untuk mengikat data ke view
     fun bindData(cat: CatModel) {
+        containerView.setOnClickListener{
+            onClickListener.onItemClick(cat)
+        }
+
         imageLoader.loadImage(cat.imageUrl, catPhotoView)
 
         // Nama
@@ -58,5 +64,8 @@ class CatViewHolder(
             Gender.Male -> MALE_SYMBOL
             else -> UNKNOWN_SYMBOL
         }
+    }
+    interface OnClickListener {
+        fun onClick(cat: CatModel)
     }
 }
